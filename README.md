@@ -1,8 +1,8 @@
-# 📝 Online Examination System
+#  Online Examination System
 
 A full-stack Online Examination System built with **FastAPI**, **MySQL**, **Redis**, and a **Vanilla JS** frontend.
 
-## 🏗 Project Structure
+##  Project Structure
 
 ```
 exam_system/
@@ -26,7 +26,7 @@ exam_system/
 └── docker-compose.yml
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Docker Desktop + WSL2
@@ -58,21 +58,21 @@ docker-compose down -v   # removes volumes too
 docker-compose up --build
 ```
 
-## 🧪 Run Tests
+##  Run Tests
 
 ```powershell
 # Run tests inside the backend container
 docker-compose exec backend pytest app/tests/ -v
 ```
 
-## 👥 Roles
+##  Roles
 
 | Role    | Permissions |
 |---------|-------------|
 | Admin   | Create/Edit/Delete exams, view all results, analytics, monitoring |
 | Student | Take exams, view own results |
 
-## 🔑 API Endpoints
+##  API Endpoints
 
 ### Auth
 - `POST /api/auth/register` - Register (admin or student)
@@ -98,7 +98,7 @@ docker-compose exec backend pytest app/tests/ -v
 - `GET /api/monitoring/stats` - System stats (**Admin**)
 - `GET /api/monitoring/logs` - Recent logs (**Admin**)
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 - **Backend:** FastAPI, SQLAlchemy, PyMySQL, Pydantic v2
 - **Auth:** JWT (python-jose), bcrypt (passlib)
