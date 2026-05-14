@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Examination System</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Auth Page -->
+    <div id="auth-page" class="page active">
+      <div class="auth-container">
+        <div class="auth-header">
+          <h1>📝 ExamSystem</h1>
+          <p>Online Examination Platform</p>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="showTab('login')">Login</button>
+          <button class="tab-btn" onclick="showTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-tab" class="tab-content active">
+          <input type="text" id="login-username" placeholder="Username" />
+          <input type="password" id="login-password" placeholder="Password" />
+          <button class="btn-primary" onclick="login()">Login</button>
+          <div id="login-error" class="error-msg"></div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-tab" class="tab-content">
+          <input type="text" id="reg-username" placeholder="Username" />
+          <input type="email" id="reg-email" placeholder="Email" />
+          <input type="password" id="reg-password" placeholder="Password" />
+          <select id="reg-role">
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button class="btn-primary" onclick="register()">Register</button>
+          <div id="register-error" class="error-msg"></div>
+          <div id="register-success" class="success-msg"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-page" class="page">
+      <nav class="navbar">
+        <span class="nav-brand">📝 ExamSystem <span class="role-badge admin">Admin</span></span>
+        <div class="nav-links">
+          <button onclick="showSection('admin-exams')" class="nav-btn">Exams</button>
+          <button onclick="showSection('admin-results')" class="nav-btn">Results</button>
+          <button onclick="showSection('admin-monitoring')" class="nav-btn">Monitoring</button>
+          <button onclick="logout()" class="nav-btn logout">Logout</button>
+        </div>
+      </nav>
+
+      <!-- Admin: Exams Section -->
+      <div id="admin-exams" class="section active">
+        <div class="section-header">
+          <h2>Manage Exams</h2>
+          <button class="btn-primary" onclick="showCreateExam()">+ Create Exam</button>
+        </div>
+
+        <!-- Create Exam Form -->
+        <div id="create-exam-form" class="card hidden">
+          <h3>Create New Exam</h3>
+          <input type="text" id="exam-title" placeholder="Exam Title" />
+          <textarea id="exam-desc" placeholder="Description (optional)"></textarea>
+          <input type="number" id="exam-duration" placeholder="Duration (minutes)" value="60" />
+          <div id="questions-container"></div>
+          <button class="btn-secondary" onclick="addQuestion()">+ Add Question</button>
+          <div class="form-actions">
+            <button class="btn-primary" onclick="createExam()">Create Exam</button>
+            <button class="btn-cancel" onclick="hideCreateExam()">Cancel</button>
+          </div>
+          <div id="create-exam-msg" class="msg"></div>
+        </div>
+
+        <div id="exams-list" class="grid"></div>
+      </div>
+
+      <!-- Admin: Results Section -->
+      <div id="admin-results" class="section">
+        <h2>All Student Results</h2>
+        <div id="all-results-table"></div>
+      </div>
+
+      <!-- Admin: Monitoring Section -->
+      <div id="admin-monitoring" class="section">
+        <h2>System Monitoring</h2>
+        <div id="monitoring-stats" class="stats-grid"></div>
+        <div class="card" style="margin-top:20px">
+          <h3>Recent Logs</h3>
+          <div id="logs-container" class="logs-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="student-page" class="page">
+      <nav class="navbar">
+        <span class="nav-brand">📝 ExamSystem <span class="role-badge student">Student</span></span>
+        <div class="nav-links">
+          <button onclick="showStudentSection('student-exams')" class="nav-btn">Available Exams</button>
+          <button onclick="showStudentSection('student-results')" class="nav-btn">My Results</button>
+          <button onclick="logout()" class="nav-btn logout">Logout</button>
+        </div>
+      </nav>
+
+      <!-- Student: Exams Section -->
+      <div id="student-exams" class="section active">
+        <h2>Available Exams</h2>
+        <div id="student-exams-list" class="grid"></div>
+      </div>
+
+      <!-- Student: Take Exam -->
+      <div id="take-exam-section" class="section">
+        <div id="exam-container"></div>
+      </div>
+
+      <!-- Student: Results Section -->
+      <div id="student-results" class="section">
+        <h2>My Results</h2>
+        <div id="my-results-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
